@@ -3,6 +3,7 @@ BASH Challenges
 1. 
 a) To {Display the path of your current directory} Use - 'pwd'
 ![output](Screenshots/1a.png)
+
 b) To {List out the contents of your current directory} Use - 'ls'
 c) To {List out the contents of your current directory including hidden files} Use - 'ls -a'
 
