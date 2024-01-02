@@ -16,18 +16,22 @@ b) To Move to the newly created directory a Use - 'cd a'
 c) To Create a blank file named “file1” Use - 'vi file1' & ':wq'(save and quit)
 d) To Display the file type of “file1” Use - 'cat file1'
 ![output](Screenshots/2d.png)
+
 e) To Add the line “Hello World” to “file1” using the command echo Use - 'echo 'Hello World' > file'(Replace)
                                                                        - 'echo 'Hello World' >> file'(Append)
 f) To Display the contents of “file1” Use - 'cat file1'
 ![output](Screenshots/2f.png)
+
 g) To Display the file type of “file1” again Use - file file1
 ![output](Screenshots/2g.png)
 
 3. 
 a) To Stay in directory a. Create a file “file2” and add the contents below using the  command cat Use - 'cat > file2 \n First Line Second Line Third Line <exit using (control+c)>'
 ![output](Screenshots/3a.png)
+
 b) To Display the contents of “file2” Use - 'cat file2'
 ![output](Screenshots/3b.png)
+
 c) To Display the contents of “file2” with the lines reversed Use - 'cat file2 | rev'
 ![output](Screenshots/3c.png)
 
