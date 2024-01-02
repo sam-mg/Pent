@@ -5,12 +5,15 @@ a) To {Display the path of your current directory} Use - 'pwd'
 ![output](Screenshots/1a.png)
 
 b) To {List out the contents of your current directory} Use - 'ls'
+![output](Screenshots/1b.png)
+
 c) To {List out the contents of your current directory including hidden files} Use - 'ls -a'
+![output](Screenshots/1c.png)
 
 2. 
 a) To Create a new directory named a Use - 'mkdir <new_dir_name>'
 b) To Move to the newly created directory a Use - 'cd <new_dir_name>'
-c) To Create a blank file named “file1” Use - 'vi file1'
+c) To Create a blank file named “file1” Use - 'vi file1' & ':wq'(save and quit)
 d) To Display the file type of “file1” Use - 'cat file1'
 e) To Add the line “Hello World” to “file1” using the command echo Use - 'echo 'Hello World' > file'(Replace)
                                                                        - 'echo 'Hello World' >> file'(Append)
