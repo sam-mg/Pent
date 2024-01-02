@@ -11,19 +11,25 @@ c) To {List out the contents of your current directory including hidden files} U
 ![output](Screenshots/1c.png)
 
 2. 
-a) To Create a new directory named a Use - 'mkdir <new_dir_name>'
-b) To Move to the newly created directory a Use - 'cd <new_dir_name>'
+a) To Create a new directory named a Use - 'mkdir a'
+b) To Move to the newly created directory a Use - 'cd a'
 c) To Create a blank file named “file1” Use - 'vi file1' & ':wq'(save and quit)
 d) To Display the file type of “file1” Use - 'cat file1'
+![output](Screenshots/2d.png)
 e) To Add the line “Hello World” to “file1” using the command echo Use - 'echo 'Hello World' > file'(Replace)
                                                                        - 'echo 'Hello World' >> file'(Append)
 f) To Display the contents of “file1” Use - 'cat file1'
+![output](Screenshots/2f.png)
 g) To Display the file type of “file1” again Use - file file1
+![output](Screenshots/2g.png)
 
 3. 
-a) To Stay in directory a. Create a file “file2” and add the contents below using the  command cat Use - 
-b) To Display the contents of “file2” Use - 
-c) To Display the contents of “file2” with the lines reversed Use - 
+a) To Stay in directory a. Create a file “file2” and add the contents below using the  command cat Use - 'cat > file2 \n First Line Second Line Third Line <exit using (control+c)>'
+![output](Screenshots/3a.png)
+b) To Display the contents of “file2” Use - 'cat file2'
+![output](Screenshots/3b.png)
+c) To Display the contents of “file2” with the lines reversed Use - 'cat file2 | rev'
+![output](Screenshots/3c.png)
 
 4. 
 a) To Stay in directory a. Concatenate the contents of “file1” and “file2” and save them into a new file “file3” Use - 
