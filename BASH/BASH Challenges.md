@@ -36,32 +36,36 @@ c) To Display the contents of “file2” with the lines reversed Use - 'cat fil
 ![output](Screenshots/3c.png)
 
 4. 
-a) To Stay in directory a. Concatenate the contents of “file1” and “file2” and save them into a new file “file3” Use - 
-b) To Display the contents of “file3” Use - 
+a) To Stay in directory a. Concatenate the contents of “file1” and “file2” and save them into a new file “file3” Use - 'cat file1 file2 > file3'
+b) To Display the contents of “file3” Use - 'cat file3'
+![output](Screenshots/4b.png)
 
 5. 
-a) To Stay in directory a. Create 2 directories b/c with a single command Use - 
-b) To Create a new directory d Use - 
-c) To Copy the directory d to directory c using a single command Use - 
-d) To Delete the directory d in the current directory a Use - 
-e) To Copy “file3” to the directory d with a single command Use - 
+a) To Stay in directory a. Create 2 directories b/c with a single command Use - 'mkdir b | mkdir c'
+b) To Create a new directory d Use - 'mkdir d'
+c) To Copy the directory d to directory c using a single command Use - 'cp -r(recursive{It means that it copies one file at a time and then the another, like a while loop}) d c'
+d) To Delete the directory d in the current directory a Use - 'rm -d(directory) d'
+e) To Copy “file3” to the directory d with a single command Use - 'cp file3 c/d'
 
 6. 
-a) To Go to directory d and rename “file3” to “file0” Use - 
-b) To Stay in the same directory and move “file0” to directory a Use - 
+a) To Go to directory d and rename “file3” to “file0” Use - 'mv file3 file0'
+b) To Stay in the same directory and move “file0” to directory a Use - 'mv c/d/file0 c/'
 
 7. 
-a) To Go to your home directory Use - 
-b) To Create a file named “test” in the directory a/b/c/d Use - 
-c) To Stay in the home directory. Find and display the path of “test” Use - 
+a) To Go to your home directory Use - 'cd /home'
+b) To Create a file named “test” in the directory a/b/c/d Use - 'vi /Users/sammgharish/Desktop/a/c/d/test.txt'
+c) To Stay in the home directory. Find and display the path of “test” Use - 'find /Users/sammgharish/Desktop -name test.txt' (Here name is case-sensitive) (Specifing the path is mandatory or put '.' to search in current directory)
+                                                                          - Use 'iname' (If you don't want it case sensitive)
 
 8. 
-a) To Go to directory a. Get the man page of grep and save its contents to a file named “grepman.txt” Use - 
-b) To Print the lines containing the word “FILE” (Case sensitive) in the file “grepman.txt” Use - 
+a) To Go to directory a. Get the man page of grep and save its contents to a file named “grepman.txt” Use - 'man grep | cat > grepman.txt'
+![output](Screenshots/8a.png)
+
+b) To Print the lines containing the word “FILE” (Case sensitive) in the file “grepman.txt” Use - 'grep 'FILE' grepman.txt'
 
 9. 
-a) To Go to directory a and remove the directory b with a single command Use - 
-b) To Remove the files starting with the word “file” with a single command Use - 
+a) To Go to directory a and remove the directory b with a single command Use - 'rm -r b'
+b) To Remove the files starting with the word “file” with a single command Use - 'rm file*'
 
 10. 
 a) To Go to https://blog.bi0s.in/  and download the logo.png image using wget Use - 
