@@ -68,8 +68,8 @@ a) To Go to directory a and remove the directory b with a single command Use - '
 b) To Remove the files starting with the word “file” with a single command Use - 'rm file*'
 
 10. 
-a) To Go to https://blog.bi0s.in/  and download the logo.png image using wget Use - 
-b) To Do the same with python script (Hint : request library) Use - 
+a) To Go to https://blog.bi0s.in/ and download the logo.png image using wget Use - 'wget https://blog.bi0s.in/assets/logo.png'
+b) To Do the same with python script (Hint : request library) - Run 10b.py
 c) To Also, display the metadata of the png. Use - 
 
 11. 
