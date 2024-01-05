@@ -70,7 +70,10 @@ b) To Remove the files starting with the word “file” with a single command U
 10. 
 a) To Go to https://blog.bi0s.in/ and download the logo.png image using wget Use - 'wget https://blog.bi0s.in/assets/logo.png'
 b) To Do the same with python script (Hint : request library) - Run 10b.py
-c) To Also, display the metadata of the png. Use - 
+c) To Also, display the metadata of the png. 
+For this you have to have the tool 'exiftool'. You can do that by 'sudo apt exif'. Using this tool, you can read, write and edit metadata of a Image.
+Use - 'exiftool <image>'
+![output](Screenshots/10c.png)
 
 11. 
 a.) To Use traceroute on google.com and find list of the IP addresses and hostnames between you and  google.com Use - 
