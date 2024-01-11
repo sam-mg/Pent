@@ -38,9 +38,6 @@ def vigenere_cipher(msg, ky, opt='Encrypt'):
     return result
 
 def calculate_hmac(key, data):
-    print(f'Type of key: {type(key)}, Value of key: {key}')
-    print(f'Type of data: {type(data)}, Value of data: {data}')
-
     key_bytes = bytes(str(key), 'utf-8')
     data_str = str(data)
     data_bytes = bytes(data_str, 'utf-8')
@@ -66,19 +63,18 @@ def serverside():
             if not received_encrypted_data:
                 break
 
-            computed_hmac = calculate_hmac(str(port_number), received_encrypted_data)
+            computed_hmac = calculate_hmac(str(port_number), (received_encrypted_data.decode()))
 
-            if computed_hmac == received_hmac:
+            if computed_hmac == (received_hmac.decode()):
                 decrypted_data = vigenere_cipher((received_encrypted_data.decode()), str(port_number), opt='Decrypt')
-                received_data = decrypted_data
-                print(received_data)
+                print('HMAC Verified. Client Message:', decrypted_data)
                 # Sending a response back to the client
-                response = "Server received the data"
+                response = str(input('Enter the Response from server: '))
                 encrypted_response = vigenere_cipher(response, str(port_number))
-                hmac_response = calculate_hmac(port_number, (encrypted_response.decode()))
+                hmac_response = calculate_hmac(str(port_number), encrypted_response)
 
+                client_socket.send(hmac_response.encode())
                 client_socket.send((encrypted_response.encode()))
-                client_socket.send(hmac_response)
             else:
                 print("HMAC verification failed.")
 
@@ -113,43 +109,40 @@ def clientside():
 
 
             # Receiving response from the server
-            received_encrypted_response = tcp_ip4.recv(1024)
             received_hmac_response = tcp_ip4.recv(64)
+            received_encrypted_response = tcp_ip4.recv(1024)
 
             decrypted_response = vigenere_cipher((received_encrypted_response.decode()), str(port_number), opt='Decrypt')
-            computed_hmac_response = calculate_hmac(port_number, received_encrypted_response)
+            computed_hmac_response = calculate_hmac(str(port_number), (received_encrypted_response.decode()))
 
-            if computed_hmac_response == received_hmac_response:
-                print("HMAC verified. Server response:", decrypted_response.decode('latin-1'))
+            if computed_hmac_response == (received_hmac_response.decode()):
+                print("HMAC verified. Server response:", decrypted_response)
             else:
                 print("HMAC verification failed.")
-
-            print("Server response:", decrypted_response)
     finally:
         tcp_ip4.close()
 
-def option():
+def start():
     # Clearing the Screen
     if os.name == 'nt':  # Check if the operating system is Windows
         os.system('cls')
     else:  # Assume Unix-based system
         os.system('clear')
-    print('This is a Chat-App Created Using Sockets.\nTo run this code, you need to run it in two separate terminals (or)\nYou can do one in VSCode and other in the dedicated terminal.\n\nChoose which Side is this:\n1. Server Side\n2. Client Side')
-    ch = int(input('Enter Your Choice: '))
-    return ch
+    
+    print('This is a Chat-App Created Using Sockets.\nTo run this code, you need to run it in two separate terminals (or)\nYou can do one in VSCode and the other in the dedicated terminal.\n\nChoose which Side is this:\n1. Server Side\n2. Client Side')
 
-while True:
-    try:
-        ch = option()
-        if ch == 1:
-            serverside()
-            break
-        elif ch == 2:
-            clientside()
-            break
-        else:
-            print('Invalid choice.')
-            option()
-    except ValueError:
-        print('Invalid input. Please enter a valid choice (1 for Server Side or 2 for Client Side).')
-        option()
+    while True:
+        try:
+            ch = int(input('Enter Your Choice: '))
+            if ch == 1:
+                serverside()
+                break
+            elif ch == 2:
+                clientside()
+                break
+            else:
+                print('Invalid choice. Please enter 1 for Server Side or 2 for Client Side.')
+        except ValueError:
+            print('Invalid input. Please enter a valid choice (1 for Server Side or 2 for Client Side).')
+
+start()
