@@ -37,13 +37,14 @@ def vigenere_cipher(msg, ky, opt='Encrypt'):
             result += char
     return result
 
-def hashgenerate(data):
-    # Calculate the SHA-512 hash of the text by encoding it as UTF-8 bytes,
-    # Hashing using the hashlib library, and obtaining the hexadecimal digest.
-    return hashlib.sha512(data.encode('utf-8')).hexdigest()
-
 def calculate_hmac(key, data):
-    return hmac.new(str(key).encode(), data.encode(), hashlib.sha256).hexdigest()
+    print(f'Type of key: {type(key)}, Value of key: {key}')
+    print(f'Type of data: {type(data)}, Value of data: {data}')
+
+    key_bytes = bytes(str(key), 'utf-8')
+    data_str = str(data)
+    data_bytes = bytes(data_str, 'utf-8')
+    return hmac.new(key_bytes, data_bytes, hashlib.sha256).hexdigest()
 
 def serverside():
     ip = 'localhost'
@@ -60,34 +61,32 @@ def serverside():
     try:
         while True:
             received_encrypted_data = client_socket.recv(1024)
-#            received_hmac = client_socket.recv(64)
+            received_hmac = client_socket.recv(64)
 
             if not received_encrypted_data:
                 break
 
-            decrypted_data = vigenere_cipher((received_encrypted_data.decode()), str(port_number), opt='Decrypt')
-            received_data = decrypted_data
-            print(received_data)
-#            computed_hmac = calculate_hmac(port_number, received_encrypted_data)
+            computed_hmac = calculate_hmac(str(port_number), received_encrypted_data)
 
-            # if computed_hmac == received_hmac:
-            #     print("HMAC verified. Received data:", received_data)
-            # else:
-            #     print("HMAC verification failed.")
+            if computed_hmac == received_hmac:
+                decrypted_data = vigenere_cipher((received_encrypted_data.decode()), str(port_number), opt='Decrypt')
+                received_data = decrypted_data
+                print(received_data)
+                # Sending a response back to the client
+                response = "Server received the data"
+                encrypted_response = vigenere_cipher(response, str(port_number))
+                hmac_response = calculate_hmac(port_number, (encrypted_response.decode()))
 
-            # Sending a response back to the client
-            response = "Server received the data"
-            encrypted_response = vigenere_cipher(response, str(port_number))
-#            hmac_response = calculate_hmac(port_number, encrypted_response)
+                client_socket.send((encrypted_response.encode()))
+                client_socket.send(hmac_response)
+            else:
+                print("HMAC verification failed.")
 
-            client_socket.send((encrypted_response.encode()))
-#            client_socket.send(hmac_response)
     finally:
         # Indicate the end of communication
         client_socket.send(b"END")
         client_socket.close()
         tcp_ip4.close()
-
 
 def clientside():
     ip = 'localhost'
@@ -105,23 +104,25 @@ def clientside():
 
             # Ensure data_to_send is a string and then encode
             data_to_send = str(data_to_send)
-            encrypted_data_to_send = vigenere_cipher(data_to_send, str(port_number))
-#            hmac_to_send = calculate_hmac(port_number, encrypted_data_to_send)
+            port_number_str = str(port_number)  # Convert port_number to string
+            encrypted_data_to_send = vigenere_cipher(data_to_send, port_number_str)
+            hmac_to_send = calculate_hmac(port_number_str, encrypted_data_to_send)
 
-            tcp_ip4.send((encrypted_data_to_send).encode())
-#            tcp_ip4.send(hmac_to_send)
+            tcp_ip4.send(encrypted_data_to_send.encode())
+            tcp_ip4.send(hmac_to_send.encode())
+
 
             # Receiving response from the server
             received_encrypted_response = tcp_ip4.recv(1024)
             received_hmac_response = tcp_ip4.recv(64)
 
             decrypted_response = vigenere_cipher((received_encrypted_response.decode()), str(port_number), opt='Decrypt')
-#            computed_hmac_response = calculate_hmac(port_number, received_encrypted_response)
+            computed_hmac_response = calculate_hmac(port_number, received_encrypted_response)
 
-            # if computed_hmac_response == received_hmac_response:
-            #     print("HMAC verified. Server response:", decrypted_response.decode('latin-1'))
-            # else:
-            #     print("HMAC verification failed.")
+            if computed_hmac_response == received_hmac_response:
+                print("HMAC verified. Server response:", decrypted_response.decode('latin-1'))
+            else:
+                print("HMAC verification failed.")
 
             print("Server response:", decrypted_response)
     finally:

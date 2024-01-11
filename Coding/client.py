@@ -25,6 +25,7 @@ def vigenere_decrypt(key, encrypted_data):
 def calculate_hmac(key, data):
     return hmac.new(str(key).encode(), data, hashlib.sha512).digest()
 
+ip = 'localhost'
 port_number = 12345
 
 tcp_ip4 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

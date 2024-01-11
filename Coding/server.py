@@ -7,7 +7,7 @@ def vigenere_encrypt(key, data):
     key_str = str(key)
     key_length = len(key_str)
     for i in range(len(data)):
-        key_char = int(key_str[i % key_length])
+        key_char = ord(key_str[i % key_length])  # Convert key char to its ASCII value
         encrypted_char = (data[i] + key_char) % 256
         encrypted.append(encrypted_char)
     return bytes(encrypted)
@@ -17,7 +17,7 @@ def vigenere_decrypt(key, encrypted_data):
     key_str = str(key)
     key_length = len(key_str)
     for i in range(len(encrypted_data)):
-        key_char = int(key_str[i % key_length])  # Convert key char back to int
+        key_char = ord(key_str[i % key_length])  # Convert key char to its ASCII value
         decrypted_char = (encrypted_data[i] - key_char) % 256
         decrypted.append(decrypted_char)
     return bytes(decrypted)
@@ -25,10 +25,11 @@ def vigenere_decrypt(key, encrypted_data):
 def calculate_hmac(key, data):
     return hmac.new(str(key).encode(), data, hashlib.sha512).digest()
 
+ip = 'localhost'
 port_number = 12345
 
 tcp_ip4 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-tcp_ip4.bind(('localhost', port_number))
+tcp_ip4.bind((ip, port_number))
 tcp_ip4.listen()
 
 print("Waiting for a connection...")
@@ -47,7 +48,7 @@ while True:
     computed_hmac = calculate_hmac(port_number, received_encrypted_data)
 
     if computed_hmac == received_hmac:
-        print("HMAC verified. Received data:", recieved_data)
+        print("HMAC verified. Received data:", received_data)
     else:
         print("HMAC verification failed.")
 
@@ -59,4 +60,7 @@ while True:
     client_socket.send(encrypted_response)
     client_socket.send(hmac_response)
 
+# Indicate the end of communication
+client_socket.send(b"END")
+client_socket.close()
 tcp_ip4.close()
