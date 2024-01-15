@@ -67,7 +67,7 @@
     - shl reg1, reg2       <=>     Shift reg1 left by the amount in reg2; 
     - shr reg1, reg2       <=>     Shift reg1 right by the amount in reg2; 
     - Note: 'reg2' can be replaced by a constant or memory location
-- By using this it can be done
+- By using this it can be done.  
 ![output](Screenshots/9.png)
 
 10) 
@@ -80,5 +80,5 @@
 - The simplest way is to add it to a register with 0 value
 - Using xor of same things, the value will be 0
 - To Do 'XOR' gate, it can be done by - 'xor a, a'
-- Then add it, like before.
+- Then add it, like before.  
 ![output](Screenshots/10.png)
