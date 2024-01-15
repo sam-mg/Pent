@@ -22,8 +22,8 @@ d) To Display the file type of “file1” Use - '___cat file1___'
 <!-- By using 'cat', you can view what is there in the file.   -->
 ![output](Screenshots/2d.png)  
 e) To Add the line “Hello World” to “file1” using the command echo Use  
-- '___echo 'Hello World' > file___'(Replace)  
-- '___echo 'Hello World' >> file___'(Append)  
+<!-- - '___echo 'Hello World' > file___'(Replace)  
+- '___echo 'Hello World' >> file___'(Append)   -->
 <!-- By using 'echo', you can print the content mentioned after it.  
 If you mention a file after it with a '>', you will be able to add/ replace content to that file.   -->
 f) To Display the contents of “file1” Use - '___cat file1___'  
@@ -77,8 +77,8 @@ b) To Create a file named “test” in the directory a/b/c/d Use - '___vi /User
 
 c) To Stay in the home directory. Find and display the path of “test” Use 
 - '___find /Users/sammgharish/Desktop -name test.txt___' 
-(Here name is case-sensitive) 
-(Specifing the path is mandatory or put '.' to search in current directory)  
+<!-- (Here name is case-sensitive)  
+(Specifing the path is mandatory or put '.' to search in current directory)   -->
 - Use 'iname' (If you don't want it case sensitive)
 <!-- By using 'find', you can find things which you need by specifiing the options.   -->
 
@@ -101,19 +101,19 @@ a) To Go to https://blog.bi0s.in/ and download the logo.png image using wget Use
 <!-- By using 'wget <link>', you can get the things in the link to your local device.   -->
 b) To Do the same with python script (Hint : request library) - Run 10b.py  
 c) To Also, display the metadata of the png.  
-For this you have to have the tool 'exiftool'. 
+<!-- For this you have to have the tool 'exiftool'. 
 You can do that by 'sudo apt exif'. 
-Using this tool, you can read, write and edit metadata of a Image.  
+Using this tool, you can read, write and edit metadata of a Image.   -->
 Use - '___exiftool logo.png___'  
 <!-- By using 'exiftool <file>', you can view the metadata of the file.   -->
 ![output](Screenshots/10c.png)
 
 11. 
-a) To Use traceroute on google.com and find list of the IP addresses and hostnames between you and  google.com Use - '___traceroute google.com___'  
+a) To Use traceroute on google.com and find list of the IP addresses and hostnames between you and google.com Use - '___traceroute google.com___'  
 <!-- By using 'traceroute <link>', you can view all the IP's & hostname's between you and link.   -->
 ![output](Screenshots/11a.png)  
-b) To Find Subdomains, IP addresses of google.com .(Tool i will add if you want me to ) Use -  
-For this you have to have the tool 'dnsenum'. You can do that by 'sudo apt install dnsenum'. Using this tool, you can see several data.  
+b) To Find Subdomains, IP addresses of google.com .(Tool i will add if you want me to )
+<!-- For this you have to have the tool 'dnsenum'. You can do that by 'sudo apt install dnsenum'. Using this tool, you can see several data.   -->
 Use - '___dnsenum --enum google.com___'  
 <!-- By using 'dnsenum <option> <link>', you can view various details of the link.   -->
 ![Subdomains](Screenshots/11b1.png)  
@@ -129,18 +129,17 @@ a) To Start a web server on port 8080 with python command Use - '___python -m ht
 a.) Learn about nmap and use that scanner to scan your own machine - '___nmap localhost___'  
 <!-- By using 'nmap <host>', you can scan the host.   -->
 b.) To Go to https://tryhackme.com/room/furthernmap and get ip address and Scan the ip address with (-sS,-sV,-A) in your terminal include all ports (Hint : start machine )  
-You can scan it by using, '___sudo nmap -sS -sV -A -p- 192.168.0.1___'  
+You can scan it by using, '___sudo nmap -sS -sV -A -p- <port>___'  
 <!-- By using this, you can scan the IP with several options.   -->
 
 14. 
 a.) To Create a chat application using nc on your local machine with one terminal as server and other as the client 
-- Server Side Use - '___nc -l -p 10000___'  
+- Server Side Use - '___nc -l -p 34567___'  
 <!-- By using this, you can create a conversation and this stays as the server.   -->
-- Client Side Use - '___nc localhost 10000___'  
+- Client Side Use - '___nc localhost 34567___'  
 <!-- By using that, you can execute the converstation with the server as a client.   -->
-
 b.) To Transfer a file from server to client (save that file with another name) and display the file  
-- Server Side Use - '___cat grepman.txt | nc -l -p 1000___'  
+- Server Side Use - '___cat grepman.txt | nc -l -p 34567___'  
 <!-- By using this, you are simply getting the data from the file and send it to the client.   -->
-- Client Side Use - '___nc -l -p 1000 > file.txt___'  
+- Client Side Use - '___nc -l -p 34567 > file.txt___'  
 <!-- By using that, you are simply making a new file with the data you recieved.   -->
