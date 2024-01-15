@@ -92,6 +92,7 @@ def serverside():
         # Check if the client wants to exit
         if vigenere_cipher(received_encrypted_data.decode(), str(server_port), operation='Decrypt') == 'exit':
             print("The Client wants to Exit the Chat")
+            print('Exiting Chat - App')
             break
 
         # Compute HMAC for verification
@@ -173,6 +174,7 @@ def clientside():
         # Check if the server wants to exit
         if vigenere_cipher(received_encrypted_response.decode(), str(server_port), operation='Decrypt') == 'exit':
             print("The Server wants to Exit the Chat")
+            print('Exiting Chat - App')
             break
 
         # Decrypt the response using the Vigenere cipher
