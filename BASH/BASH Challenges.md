@@ -129,9 +129,8 @@ a) To Start a web server on port 8080 with python command Use - '___python -m ht
 a.) Learn about nmap and use that scanner to scan your own machine - '___nmap localhost___'  
 <!-- By using 'nmap <host>', you can scan the host.   -->
 b.) To Go to https://tryhackme.com/room/furthernmap and get ip address and Scan the ip address with (-sS,-sV,-A) in your terminal include all ports (Hint : start machine )  
-Get IP using - '___dig https://tryhackme.com/room/furthernmap___'    
-Then scan IP using - '___sudo nmap -sS -sV -A -p- 192.168.0.1___'  
-<!-- By using these, you can scan the IP with several options.   -->
+You can scan it by using, '___sudo nmap -sS -sV -A -p- 192.168.0.1___'  
+<!-- By using this, you can scan the IP with several options.   -->
 
 14. 
 a.) To Create a chat application using nc on your local machine with one terminal as server and other as the client 
