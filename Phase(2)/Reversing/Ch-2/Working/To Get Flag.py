@@ -19,7 +19,7 @@ def modify_string(input_str):
 
 
 def main():
-    user_input = input('Enter a string: ')
+    user_input = 'cn^ixelomkigaam{qjlp<Az'
     modified_input = modify_string(user_input)
     print(modified_input)
     # target_string = 'cn^ixelomkigaam{qjlp<Az'
